@@ -1,0 +1,46 @@
+﻿@model WebApp.Models.Details
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+<h2>Index</h2>
+
+
+<body>
+    @*<table cellpadding="0" cellspacing="0">
+        @Html.BeginForm("GetDetails", "Details", FormMethod.Get)
+        {
+
+        <tr>
+            <td>ID:</td>
+            <td>
+                @Html.TextBoxFor(m => (m.ID))
+            </td>
+     
+        <tr>
+            <td><input type="submit" value="Get" /></td>
+        </tr>
+        }
+    </table>*@
+
+    @using (Ajax.BeginForm(
+                new AjaxOptions
+                {
+
+                    HttpMethod = "get",
+                    Url=@Url.Action("GetDetails"),
+                    InsertionMode = InsertionMode.InsertAfter,
+                    UpdateTargetId = "Display"
+                }))
+    {
+        @Html.TextBoxFor(Model => Model.ID)
+        <button type="submit">Get</button>
+
+    }
+  <div id="Display"></div>
+
+
+   
+    </body>
+
+</html>
